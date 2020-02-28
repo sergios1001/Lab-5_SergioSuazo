@@ -5,6 +5,7 @@
  */
 package lab5_sergiosuazo;
 
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -51,11 +52,43 @@ public class Marvel extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jd_Crear = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        tf_nombre = new javax.swing.JTextField();
+        tf_origen = new javax.swing.JTextField();
+        sp_edad = new javax.swing.JSpinner();
+        sp_altura = new javax.swing.JSpinner();
+        cb_tipo = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
         jd_Superpoder = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        sp_nivel = new javax.swing.JSpinner();
+        rb_Si = new javax.swing.JRadioButton();
+        rb_No = new javax.swing.JRadioButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ta_descripcion = new javax.swing.JTextArea();
+        jButton5 = new javax.swing.JButton();
         jd_AsignarSuper = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_personajes = new javax.swing.JList<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jl_superpoderes = new javax.swing.JList<>();
+        jButton6 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jd_AsignarH = new javax.swing.JDialog();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jl_heroesA = new javax.swing.JList<>();
+        cb_grupoH = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
         jd_AsignarV = new javax.swing.JDialog();
         jd_Carcel = new javax.swing.JDialog();
+        mortal = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tf_user = new javax.swing.JTextField();
@@ -130,6 +163,11 @@ public class Marvel extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Ver Carcel");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jd_Interfaz.setJMenuBar(jMenuBar1);
@@ -182,48 +220,250 @@ public class Marvel extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
+        jLabel6.setText("Nombre:");
+
+        jLabel7.setText("Edad:");
+
+        jLabel8.setText("Altura:");
+
+        jLabel9.setText("Planeta de Origen: ");
+
+        jLabel10.setText("Tipo:");
+
+        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Heroe", "Villano" }));
+
+        jButton4.setText("Crear");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_CrearLayout = new javax.swing.GroupLayout(jd_Crear.getContentPane());
         jd_Crear.getContentPane().setLayout(jd_CrearLayout);
         jd_CrearLayout.setHorizontalGroup(
             jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_CrearLayout.createSequentialGroup()
+                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_CrearLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_CrearLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_CrearLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(sp_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_CrearLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_CrearLayout.createSequentialGroup()
+                                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_CrearLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(sp_altura))
+                                    .addComponent(jLabel9))
+                                .addGap(18, 18, 18)
+                                .addComponent(tf_origen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jd_CrearLayout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(jButton4)))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jd_CrearLayout.setVerticalGroup(
             jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_CrearLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(sp_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(sp_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(tf_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_CrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
+
+        jLabel11.setText("Nivel de poder:");
+
+        jLabel12.setText("Descripcion:");
+
+        jLabel13.setText("Mortal:");
+
+        mortal.add(rb_Si);
+        rb_Si.setText("S");
+
+        mortal.add(rb_No);
+        rb_No.setText("N");
+
+        ta_descripcion.setColumns(20);
+        ta_descripcion.setRows(5);
+        jScrollPane4.setViewportView(ta_descripcion);
+
+        jButton5.setText("Crear");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_SuperpoderLayout = new javax.swing.GroupLayout(jd_Superpoder.getContentPane());
         jd_Superpoder.getContentPane().setLayout(jd_SuperpoderLayout);
         jd_SuperpoderLayout.setHorizontalGroup(
             jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                .addGroup(jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(sp_nivel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(rb_Si)
+                                .addGap(18, 18, 18)
+                                .addComponent(rb_No))))
+                    .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(jButton5)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jd_SuperpoderLayout.setVerticalGroup(
             jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_SuperpoderLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(sp_nivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(rb_Si)
+                    .addComponent(rb_No))
+                .addGap(18, 18, 18)
+                .addGroup(jd_SuperpoderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        jl_personajes.setModel(new DefaultListModel());
+        jScrollPane5.setViewportView(jl_personajes);
+
+        jl_superpoderes.setModel(new DefaultListModel());
+        jScrollPane6.setViewportView(jl_superpoderes);
+
+        jButton6.setText("Dar Superpoder");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setText("Personajes");
+
+        jLabel15.setText("Poderes");
 
         javax.swing.GroupLayout jd_AsignarSuperLayout = new javax.swing.GroupLayout(jd_AsignarSuper.getContentPane());
         jd_AsignarSuper.getContentPane().setLayout(jd_AsignarSuperLayout);
         jd_AsignarSuperLayout.setHorizontalGroup(
             jd_AsignarSuperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_AsignarSuperLayout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jd_AsignarSuperLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jd_AsignarSuperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addGroup(jd_AsignarSuperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(53, 53, 53))
         );
         jd_AsignarSuperLayout.setVerticalGroup(
             jd_AsignarSuperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_AsignarSuperLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jd_AsignarSuperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_AsignarSuperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
+
+        jl_heroesA.setModel(new DefaultListModel());
+        jScrollPane7.setViewportView(jl_heroesA);
+
+        cb_grupoH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Avengers", "Xmen" }));
+
+        jButton7.setText("Agregar al grupo");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_AsignarHLayout = new javax.swing.GroupLayout(jd_AsignarH.getContentPane());
         jd_AsignarH.getContentPane().setLayout(jd_AsignarHLayout);
         jd_AsignarHLayout.setHorizontalGroup(
             jd_AsignarHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_AsignarHLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(jd_AsignarHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_grupoH, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7))
+                .addGap(47, 47, 47))
         );
         jd_AsignarHLayout.setVerticalGroup(
             jd_AsignarHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_AsignarHLayout.createSequentialGroup()
+                .addGroup(jd_AsignarHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_AsignarHLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_AsignarHLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(cb_grupoH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton7)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jd_AsignarVLayout = new javax.swing.GroupLayout(jd_AsignarV.getContentPane());
@@ -353,6 +593,123 @@ public class Marvel extends javax.swing.JFrame {
         jd_AsignarV.pack();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        jd_Carcel.setVisible(true);
+        jd_Carcel.pack();
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        try {
+            if(cb_tipo.getSelectedItem().toString().equals("Heroe"))
+            {
+                Heroe h = new Heroe(tf_nombre.getText(), tf_origen.getText(), (int)sp_edad.getValue(), (int)sp_altura.getValue(), 0);
+                heroes.add(h);
+            }
+            else
+            {
+                Villano v = new Villano(tf_nombre.getText(), tf_origen.getText(), (int)sp_edad.getValue(), (int)sp_altura.getValue(), 0,false);
+                villanos.add(v);
+            }
+            JOptionPane.showMessageDialog(this, "Se creo el personaje exitosamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Hubo un error al momento de la creacion");
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        try {
+            boolean flag;
+            if(rb_Si.isSelected())
+            {
+                flag=true;
+            }
+            else
+            {
+                flag=false;
+            }
+            Superpoder s = new Superpoder((int)sp_nivel.getValue(), ta_descripcion.getText(), flag);
+            superpoderes.add(s);
+            JOptionPane.showMessageDialog(this, "Se creo el superpoder exitosamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un problema al crear el superpoder");
+        }
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        if(jl_personajes.getSelectedIndex()>=0&&jl_superpoderes.getSelectedIndex()>=0)
+        {
+            DefaultListModel m1= (DefaultListModel) jl_personajes.getModel();
+            DefaultListModel m2= (DefaultListModel) jl_superpoderes.getModel();
+            
+            if(m1.get(jl_personajes.getSelectedIndex())instanceof Heroe)
+            {
+                if(((Heroe)m1.get(jl_personajes.getSelectedIndex())).getSuperpoderes().size()<3)
+                {
+                    ((Heroe)m1.get(jl_personajes.getSelectedIndex())).getSuperpoderes().add(((Superpoder)m2.get(jl_superpoderes.getSelectedIndex())));
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "No se le pueden agregar mas superpoderes");
+                }
+            }
+            else if(m1.get(jl_personajes.getSelectedIndex())instanceof Villano)
+            {
+                if(((Villano)m1.get(jl_personajes.getSelectedIndex())).getSuperpoderes().size()<3)
+                {
+                    ((Villano)m1.get(jl_personajes.getSelectedIndex())).getSuperpoderes().add(((Superpoder)m2.get(jl_superpoderes.getSelectedIndex())));
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "No se le pueden agregar mas superpoderes");
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No tiene seleccionado el personaje o el superpoder");
+        }
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        if(jl_heroesA.getSelectedIndex()>=0)
+        {
+            DefaultListModel m= (DefaultListModel) jl_heroesA.getModel();
+            if(cb_grupoH.getSelectedItem().toString().equals("Avengers"))
+            {
+                Heroe temp=((Heroe)m.get(jl_heroesA.getSelectedIndex()));
+                Avengers a=new Avengers(temp.getNombre(), temp.getOrigen(), temp.getEdad(), temp.getAltura(), temp.getAtrapados());
+                avengers.add(a);
+                for (int i = 0; i < heroes.size(); i++) {
+                    if(a.equals(heroes.get(i)))
+                    {
+                        heroes.remove(i);
+                    }
+                }
+            }
+            else if(cb_grupoH.getSelectedItem().toString().equals("Xmen"))
+            {
+                Heroe temp=((Heroe)m.get(jl_heroesA.getSelectedIndex()));
+                Xmen a=new Xmen(temp.getNombre(), temp.getOrigen(), temp.getEdad(), temp.getAltura(), temp.getAtrapados());
+                xmen.add(a);
+                for (int i = 0; i < heroes.size(); i++) {
+                    if(a.equals(heroes.get(i)))
+                    {
+                        heroes.remove(i);
+                    }
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No se selecciono un heroe de la lista");
+        }
+    }//GEN-LAST:event_jButton7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -389,14 +746,30 @@ public class Marvel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_grupoH;
+    private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -409,6 +782,10 @@ public class Marvel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JDialog jd_AsignarH;
     private javax.swing.JDialog jd_AsignarSuper;
     private javax.swing.JDialog jd_AsignarV;
@@ -417,10 +794,29 @@ public class Marvel extends javax.swing.JFrame {
     private javax.swing.JDialog jd_Interfaz;
     private javax.swing.JDialog jd_Superpoder;
     private javax.swing.JList<String> jl_heroes;
+    private javax.swing.JList<String> jl_heroesA;
+    private javax.swing.JList<String> jl_personajes;
+    private javax.swing.JList<String> jl_superpoderes;
     private javax.swing.JList<String> jl_villano;
     private javax.swing.JTree jt_marvel;
+    private javax.swing.ButtonGroup mortal;
     private javax.swing.JPasswordField pf_contra;
+    private javax.swing.JRadioButton rb_No;
+    private javax.swing.JRadioButton rb_Si;
+    private javax.swing.JSpinner sp_altura;
+    private javax.swing.JSpinner sp_edad;
+    private javax.swing.JSpinner sp_nivel;
+    private javax.swing.JTextArea ta_descripcion;
+    private javax.swing.JTextField tf_nombre;
+    private javax.swing.JTextField tf_origen;
     private javax.swing.JTextField tf_user;
     // End of variables declaration//GEN-END:variables
     String user="stanlee",pass="spiderman99";
+    ArrayList<Heroe> heroes=new ArrayList<>();
+    ArrayList<Villano> villanos=new ArrayList<>();
+    ArrayList<Avengers> avengers=new ArrayList<>();
+    ArrayList<Xmen> xmen=new ArrayList<>();
+    ArrayList<DarkAvengers> darkAvengers=new ArrayList<>();
+    ArrayList<SinisterSix> sinister=new ArrayList<>();
+    ArrayList<Superpoder> superpoderes=new ArrayList<>();
 }
