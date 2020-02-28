@@ -87,7 +87,14 @@ public class Marvel extends javax.swing.JFrame {
         cb_grupoH = new javax.swing.JComboBox<>();
         jButton7 = new javax.swing.JButton();
         jd_AsignarV = new javax.swing.JDialog();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jl_VillanosA = new javax.swing.JList<>();
+        cb_grupoV = new javax.swing.JComboBox<>();
+        jButton8 = new javax.swing.JButton();
         jd_Carcel = new javax.swing.JDialog();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jl_carcel = new javax.swing.JList<>();
+        jButton9 = new javax.swing.JButton();
         mortal = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -111,6 +118,11 @@ public class Marvel extends javax.swing.JFrame {
         jLabel5.setText("Villanos");
 
         jButton2.setText("Enviar a la Carcel");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Llenar/Limpiar arbol");
 
@@ -466,26 +478,78 @@ public class Marvel extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
+        jl_VillanosA.setModel(new DefaultListModel());
+        jScrollPane8.setViewportView(jl_VillanosA);
+
+        cb_grupoV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dark Avengers", "Sinister Six" }));
+
+        jButton8.setText("Agregar al Grupo");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_AsignarVLayout = new javax.swing.GroupLayout(jd_AsignarV.getContentPane());
         jd_AsignarV.getContentPane().setLayout(jd_AsignarVLayout);
         jd_AsignarVLayout.setHorizontalGroup(
             jd_AsignarVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_AsignarVLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addGroup(jd_AsignarVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_grupoV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jd_AsignarVLayout.setVerticalGroup(
             jd_AsignarVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_AsignarVLayout.createSequentialGroup()
+                .addGroup(jd_AsignarVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_AsignarVLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_AsignarVLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(cb_grupoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton8)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
+
+        jl_carcel.setModel(new DefaultListModel());
+        jScrollPane9.setViewportView(jl_carcel);
+
+        jButton9.setText("Escapar");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_CarcelLayout = new javax.swing.GroupLayout(jd_Carcel.getContentPane());
         jd_Carcel.getContentPane().setLayout(jd_CarcelLayout);
         jd_CarcelLayout.setHorizontalGroup(
             jd_CarcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_CarcelLayout.createSequentialGroup()
+                .addGroup(jd_CarcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_CarcelLayout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_CarcelLayout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jButton9)))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jd_CarcelLayout.setVerticalGroup(
             jd_CarcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_CarcelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton9)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -683,6 +747,8 @@ public class Marvel extends javax.swing.JFrame {
             {
                 Heroe temp=((Heroe)m.get(jl_heroesA.getSelectedIndex()));
                 Avengers a=new Avengers(temp.getNombre(), temp.getOrigen(), temp.getEdad(), temp.getAltura(), temp.getAtrapados());
+                m.remove(jl_heroesA.getSelectedIndex());
+                jl_heroesA.setModel(m);
                 avengers.add(a);
                 for (int i = 0; i < heroes.size(); i++) {
                     if(a.equals(heroes.get(i)))
@@ -696,6 +762,8 @@ public class Marvel extends javax.swing.JFrame {
                 Heroe temp=((Heroe)m.get(jl_heroesA.getSelectedIndex()));
                 Xmen a=new Xmen(temp.getNombre(), temp.getOrigen(), temp.getEdad(), temp.getAltura(), temp.getAtrapados());
                 xmen.add(a);
+                m.remove(jl_heroesA.getSelectedIndex());
+                jl_heroesA.setModel(m);
                 for (int i = 0; i < heroes.size(); i++) {
                     if(a.equals(heroes.get(i)))
                     {
@@ -709,6 +777,95 @@ public class Marvel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se selecciono un heroe de la lista");
         }
     }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        // TODO add your handling code here:
+        if(jl_VillanosA.getSelectedIndex()>=0)
+        {
+            DefaultListModel m= (DefaultListModel) jl_VillanosA.getModel();
+            if(cb_grupoV.getSelectedItem().toString().equals("Dark Avengers"))
+            {
+                Villano temp=((Villano)m.get(jl_VillanosA.getSelectedIndex()));
+                DarkAvengers a=new DarkAvengers(temp.getNombre(), temp.getOrigen(), temp.getEdad(), temp.getAltura(), temp.getMuertes(),false);
+                darkAvengers.add(a);
+                m.remove(jl_VillanosA.getSelectedIndex());
+                jl_VillanosA.setModel(m);
+                for (int i = 0; i < villanos.size(); i++) {
+                    if(a.equals(villanos.get(i)))
+                    {
+                        villanos.remove(i);
+                    }
+                }
+            }
+            else if(cb_grupoV.getSelectedItem().toString().equals("Sinister Six"))
+            {
+                Villano temp=((Villano)m.get(jl_VillanosA.getSelectedIndex()));
+                SinisterSix a=new SinisterSix(temp.getNombre(), temp.getOrigen(), temp.getEdad(), temp.getAltura(), temp.getMuertes(),false);
+                sinister.add(a);
+                m.remove(jl_VillanosA.getSelectedIndex());
+                jl_VillanosA.setModel(m);
+                for (int i = 0; i < villanos.size(); i++) {
+                    if(a.equals(villanos.get(i)))
+                    {
+                        villanos.remove(i);
+                    }
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No se selecciono un villano de la lista");
+        }
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        // TODO add your handling code here:
+        if(jl_carcel.getSelectedIndex()>=0)
+        {
+            DefaultListModel m=(DefaultListModel)jl_carcel.getModel();
+            if(m.get(jl_carcel.getSelectedIndex())instanceof DarkAvengers)
+            {
+               ((DarkAvengers)m.get(jl_carcel.getSelectedIndex())).setCarcel(false);
+               m.remove(jl_carcel.getSelectedIndex());
+               jl_carcel.setModel(m);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No se selecciono nungun villano para escapar");
+        }
+    }//GEN-LAST:event_jButton9MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        if(jl_heroes.getSelectedIndex()>=0 && jl_villano.getSelectedIndex()>=0)
+        {
+            DefaultListModel m1=(DefaultListModel) jl_heroes.getModel();
+            DefaultListModel m2=(DefaultListModel) jl_villano.getModel();
+            
+            if(m1.get(jl_heroes.getSelectedIndex())instanceof Avengers)
+            {
+                ((Avengers)m1.get(jl_heroes.getSelectedIndex())).setAtrapados(((Avengers)m1.get(jl_heroes.getSelectedIndex())).getAtrapados()+1);
+            }
+            else
+            {
+                ((Xmen)m1.get(jl_heroes.getSelectedIndex())).setAtrapados(((Xmen)m1.get(jl_heroes.getSelectedIndex())).getAtrapados()+1);
+            }
+            if(m2.get(jl_villano.getSelectedIndex())instanceof DarkAvengers)
+            {
+                ((DarkAvengers)m2.get(jl_villano.getSelectedIndex())).setCarcel(true);
+            }
+            else
+            {
+               ((SinisterSix)m2.get(jl_villano.getSelectedIndex())).setCarcel(true);
+            }
+            JOptionPane.showMessageDialog(this, "Se envio al Villano a la Carcel");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No se selecciono un heroe o un villano");
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -747,6 +904,7 @@ public class Marvel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_grupoH;
+    private javax.swing.JComboBox<String> cb_grupoV;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -755,6 +913,8 @@ public class Marvel extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -786,6 +946,8 @@ public class Marvel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JDialog jd_AsignarH;
     private javax.swing.JDialog jd_AsignarSuper;
     private javax.swing.JDialog jd_AsignarV;
@@ -793,6 +955,8 @@ public class Marvel extends javax.swing.JFrame {
     private javax.swing.JDialog jd_Crear;
     private javax.swing.JDialog jd_Interfaz;
     private javax.swing.JDialog jd_Superpoder;
+    private javax.swing.JList<String> jl_VillanosA;
+    private javax.swing.JList<String> jl_carcel;
     private javax.swing.JList<String> jl_heroes;
     private javax.swing.JList<String> jl_heroesA;
     private javax.swing.JList<String> jl_personajes;
