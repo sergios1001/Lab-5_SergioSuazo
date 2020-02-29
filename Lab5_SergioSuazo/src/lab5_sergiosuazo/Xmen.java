@@ -20,7 +20,7 @@ public class Xmen extends Heroe{
 
     @Override
     public String toString() {
-        return "Xmen{" + '}';
+        return super.getNombre();
     }
     
 }

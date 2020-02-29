@@ -20,7 +20,7 @@ public class SinisterSix extends Villano{
 
     @Override
     public String toString() {
-        return "SinisterSix{" + '}';
+        return super.getNombre();
     }
     
 }

@@ -77,7 +77,7 @@ public class Heroe {
 
     @Override
     public String toString() {
-        return "Heroe{" + "nombre=" + nombre + ", origen=" + origen + ", edad=" + edad + ", altura=" + altura + ", atrapados=" + atrapados + ", superpoderes=" + superpoderes + '}';
+        return nombre;
     }
     
     

@@ -8,6 +8,8 @@ package lab5_sergiosuazo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -96,6 +98,12 @@ public class Marvel extends javax.swing.JFrame {
         jl_carcel = new javax.swing.JList<>();
         jButton9 = new javax.swing.JButton();
         mortal = new javax.swing.ButtonGroup();
+        popup_heroes = new javax.swing.JPopupMenu();
+        jmi_agregar = new javax.swing.JMenuItem();
+        jmi_eliminar = new javax.swing.JMenuItem();
+        popup_villanos = new javax.swing.JPopupMenu();
+        jmi_agregarV = new javax.swing.JMenuItem();
+        jmi_eliminarV = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tf_user = new javax.swing.JTextField();
@@ -104,9 +112,19 @@ public class Marvel extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         jl_heroes.setModel(new DefaultListModel());
+        jl_heroes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_heroesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jl_heroes);
 
         jl_villano.setModel(new DefaultListModel());
+        jl_villano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_villanoMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jl_villano);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Marvel");
@@ -125,6 +143,11 @@ public class Marvel extends javax.swing.JFrame {
         });
 
         jButton3.setText("Llenar/Limpiar arbol");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Opciones");
 
@@ -552,6 +575,38 @@ public class Marvel extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
+        jmi_agregar.setText("Agregar");
+        jmi_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_agregarActionPerformed(evt);
+            }
+        });
+        popup_heroes.add(jmi_agregar);
+
+        jmi_eliminar.setText("Eliminar");
+        jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarActionPerformed(evt);
+            }
+        });
+        popup_heroes.add(jmi_eliminar);
+
+        jmi_agregarV.setText("Agregar");
+        jmi_agregarV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_agregarVActionPerformed(evt);
+            }
+        });
+        popup_villanos.add(jmi_agregarV);
+
+        jmi_eliminarV.setText("Eliminar");
+        jmi_eliminarV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarVActionPerformed(evt);
+            }
+        });
+        popup_villanos.add(jmi_eliminarV);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Usuario:");
@@ -643,24 +698,69 @@ public class Marvel extends javax.swing.JFrame {
         // TODO add your handling code here:
         jd_AsignarSuper.setVisible(true);
         jd_AsignarSuper.pack();
+        DefaultListModel m=new DefaultListModel();
+        for (int i = 0; i < heroes.size(); i++) {
+            m.addElement(heroes.get(i));
+        }
+        for (int i = 0; i < villanos.size(); i++) {
+            m.addElement(villanos.get(i));
+        }
+        jl_personajes.setModel(m);
+        DefaultListModel mod =new DefaultListModel();
+        for (int i = 0; i < superpoderes.size(); i++) {
+            mod.addElement(superpoderes.get(i));
+        }
+        jl_superpoderes.setModel(mod);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         jd_AsignarH.setVisible(true);
         jd_AsignarH.pack();
+        DefaultListModel m=new DefaultListModel();
+        for (int i = 0; i < heroes.size(); i++) {
+            if(heroes.get(i).getSuperpoderes().size()>=1)
+            {
+               m.addElement(heroes.get(i)); 
+            } 
+        }
+        jl_heroesA.setModel(m);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         jd_AsignarV.setVisible(true);
         jd_AsignarV.pack();
+        DefaultListModel m=new DefaultListModel();
+        for (int i = 0; i < villanos.size(); i++) {
+            if(villanos.get(i).getSuperpoderes().size()>=2)
+            {
+               m.addElement(villanos.get(i)); 
+            } 
+        }
+        jl_VillanosA.setModel(m);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
         jd_Carcel.setVisible(true);
         jd_Carcel.pack();
+        DefaultListModel m=new DefaultListModel();
+        for (int i = 0; i < darkAvengers.size(); i++) {
+            if(darkAvengers.get(i).isCarcel())
+            {
+                m.addElement(darkAvengers.get(i));
+            }
+            
+        }
+        for (int i = 0; i < sinister.size(); i++) {
+            if(sinister.get(i).isCarcel())
+            {
+                m.addElement(sinister.get(i));
+            }
+        }
+        jl_carcel.setModel(m);
+        
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -731,6 +831,7 @@ public class Marvel extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "No se le pueden agregar mas superpoderes");
                 }
             }
+            JOptionPane.showMessageDialog(this, "se le agrego el superpoder");
         }
         else
         {
@@ -771,6 +872,14 @@ public class Marvel extends javax.swing.JFrame {
                     }
                 }
             }
+            DefaultListModel mod= new DefaultListModel();
+            for (int i = 0; i < avengers.size(); i++) {
+                mod.addElement(avengers.get(i));
+            }
+            for (int i = 0; i < xmen.size(); i++) {
+                mod.addElement(xmen.get(i));
+            }
+            jl_heroes.setModel(mod);
         }
         else
         {
@@ -811,6 +920,14 @@ public class Marvel extends javax.swing.JFrame {
                     }
                 }
             }
+            DefaultListModel mod= new DefaultListModel();
+            for (int i = 0; i < darkAvengers.size(); i++) {
+                mod.addElement(darkAvengers.get(i));
+            }
+            for (int i = 0; i < sinister.size(); i++) {
+                mod.addElement(sinister.get(i));
+            }
+            jl_villano.setModel(mod);
         }
         else
         {
@@ -866,6 +983,485 @@ public class Marvel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se selecciono un heroe o un villano");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jl_heroesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_heroesMouseClicked
+        // TODO add your handling code here:
+        if (jl_heroes.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()) {
+                popup_heroes.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+
+            }
+        }
+    }//GEN-LAST:event_jl_heroesMouseClicked
+
+    private void jl_villanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_villanoMouseClicked
+        // TODO add your handling code here:
+        if (jl_villano.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()) {
+                popup_villanos.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+
+            }
+        }
+    }//GEN-LAST:event_jl_villanoMouseClicked
+
+    private void jmi_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_agregarActionPerformed
+        // TODO add your handling code here:
+        DefaultTreeModel mod = (DefaultTreeModel)jt_marvel.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)mod.getRoot();
+        DefaultListModel m = (DefaultListModel) jl_heroes.getModel();
+        boolean nodo1=false,nodo2=false;
+        int temp1=0,temp2=0;
+        String grupo="";
+        Avengers a=new Avengers();
+        Xmen x=new Xmen();
+        
+        if(m.get(jl_heroes.getSelectedIndex())instanceof Avengers)
+        {
+            grupo="Avengers";
+            a=(Avengers)m.get(jl_heroes.getSelectedIndex());
+        }
+        else
+        {
+            grupo="Xmen";
+            x=(Xmen)m.get(jl_heroes.getSelectedIndex());
+        }
+        
+        for (int i = 0; i < raiz.getChildCount(); i++) {
+            if(raiz.getChildAt(i).equals("Heroe"))
+            {
+                nodo1=true;
+                temp1=i;
+                break;
+            }
+        }
+        if(nodo1)
+        {
+            DefaultMutableTreeNode child=(DefaultMutableTreeNode)raiz.getChildAt(temp1);
+            for (int i = 0; i < child.getChildCount(); i++) {
+                if(child.getChildAt(i).equals(grupo))
+                {
+                    nodo2=true;
+                    temp2=i;
+                    break;
+                }
+            }
+            if(nodo2)
+            {
+                if(grupo.equals("Avengers"))
+                {
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(a);
+                    ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(d);
+                }
+                else
+                {
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(x);
+                    ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(d);
+                }
+            }
+            else
+            {
+                if(grupo.equals("Avengers"))
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Avengers");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(a);
+                    g.add(d);
+                    raiz.add(g);
+                }
+                else
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Xmen");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(x);
+                    g.add(d);
+                    raiz.add(g);
+                }
+            }
+        }
+        else
+        {
+            DefaultMutableTreeNode t=new DefaultMutableTreeNode("Heroes");
+            if(grupo.equals("Avengers"))
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Avengers");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(a);
+                    g.add(d);
+                    t.add(g);
+                    raiz.add(t);
+                }
+                else
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Xmen");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(x);
+                    g.add(d);
+                    t.add(g);
+                    raiz.add(t);
+                }
+        }
+        mod.reload();
+        
+        
+    }//GEN-LAST:event_jmi_agregarActionPerformed
+
+    private void jmi_agregarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_agregarVActionPerformed
+        // TODO add your handling code here:
+        DefaultTreeModel mod = (DefaultTreeModel)jt_marvel.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)mod.getRoot();
+        DefaultListModel m = (DefaultListModel) jl_villano.getModel();
+        boolean nodo1=false,nodo2=false;
+        int temp1=0,temp2=0;
+        String grupo="";
+        DarkAvengers a=new DarkAvengers();
+        SinisterSix x=new SinisterSix();
+        
+        if(m.get(jl_villano.getSelectedIndex())instanceof DarkAvengers)
+        {
+            grupo="Dark Avengers";
+            a=(DarkAvengers)m.get(jl_villano.getSelectedIndex());
+        }
+        else
+        {
+            grupo="Sinister Six";
+            x=(SinisterSix)m.get(jl_villano.getSelectedIndex());
+        }
+        
+        for (int i = 0; i < raiz.getChildCount(); i++) {
+            if(raiz.getChildAt(i).equals("Villanos"))
+            {
+                nodo1=true;
+                temp1=i;
+                break;
+            }
+        }
+        if(nodo1)
+        {
+            DefaultMutableTreeNode child=(DefaultMutableTreeNode)raiz.getChildAt(temp1);
+            for (int i = 0; i < child.getChildCount(); i++) {
+                if(child.getChildAt(i).equals(grupo))
+                {
+                    nodo2=true;
+                    temp2=i;
+                    break;
+                }
+            }
+            if(nodo2)
+            {
+                if(grupo.equals("Dark Avengers"))
+                {
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(a);
+                    ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(d);
+                }
+                else
+                {
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(x);
+                    ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(d);
+                }
+            }
+            else
+            {
+                if(grupo.equals("Dark Avengers"))
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Dark Avengers");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(a);
+                    g.add(d);
+                    raiz.add(g);
+                }
+                else
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Sinister Six");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(x);
+                    g.add(d);
+                    raiz.add(g);
+                }
+            }
+        }
+        else
+        {
+            DefaultMutableTreeNode t=new DefaultMutableTreeNode("Villanos");
+            if(grupo.equals("Dark Avengers"))
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Dark Avengers");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(a);
+                    g.add(d);
+                    t.add(g);
+                    raiz.add(t);
+                }
+                else
+                {
+                    DefaultMutableTreeNode g =new DefaultMutableTreeNode("Sinister Six");
+                    DefaultMutableTreeNode d = new DefaultMutableTreeNode(x);
+                    g.add(d);
+                    t.add(g);
+                    raiz.add(t);
+                }
+        }
+        mod.reload();
+    }//GEN-LAST:event_jmi_agregarVActionPerformed
+
+    private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel m = (DefaultListModel)jl_heroes.getModel();
+        if(m.get(jl_heroes.getSelectedIndex())instanceof Avengers)
+        {
+            Avengers a=((Avengers)m.get(jl_heroes.getSelectedIndex()));
+            for (int i = 0; i < avengers.size(); i++) {
+                if(a.equals(avengers.get(i)))
+                {
+                    avengers.remove(i);
+                }
+            }
+        }
+        else
+        {
+            Xmen a=((Xmen)m.get(jl_heroes.getSelectedIndex()));
+            for (int i = 0; i < xmen.size(); i++) {
+                if(a.equals(xmen.get(i)))
+                {
+                    xmen.remove(i);
+                }
+            }
+        }
+        m.remove(jl_heroes.getSelectedIndex());
+        jl_heroes.setModel(m);
+    }//GEN-LAST:event_jmi_eliminarActionPerformed
+
+    private void jmi_eliminarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarVActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel m = (DefaultListModel)jl_villano.getModel();
+        if(m.get(jl_villano.getSelectedIndex())instanceof DarkAvengers)
+        {
+            DarkAvengers a=((DarkAvengers)m.get(jl_villano.getSelectedIndex()));
+            for (int i = 0; i < darkAvengers.size(); i++) {
+                if(a.equals(darkAvengers.get(i)))
+                {
+                    darkAvengers.remove(i);
+                }
+            }
+        }
+        else
+        {
+            SinisterSix a=((SinisterSix)m.get(jl_villano.getSelectedIndex()));
+            for (int i = 0; i < sinister.size(); i++) {
+                if(a.equals(sinister.get(i)))
+                {
+                    sinister.remove(i);
+                }
+            }
+        }
+        m.remove(jl_villano.getSelectedIndex());
+        jl_villano.setModel(m);
+    }//GEN-LAST:event_jmi_eliminarVActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        DefaultTreeModel mod = (DefaultTreeModel)jt_marvel.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)mod.getRoot();
+        DefaultListModel m1=(DefaultListModel)jl_heroes.getModel();
+        DefaultListModel m2=(DefaultListModel)jl_villano.getModel();
+        boolean nodo1=false,nodo2=false;
+        int temp1=0,temp2=0;
+        String grupo="";
+        Avengers a=new Avengers();
+        Xmen x=new Xmen();
+        DarkAvengers d=new DarkAvengers();
+        SinisterSix s=new SinisterSix();
+        if(m1.isEmpty()&&m2.isEmpty())
+        {
+            for (int i = 0; i < avengers.size(); i++) {
+                m1.addElement(avengers.get(i));
+            }
+            for (int i = 0; i < xmen.size(); i++) {
+                m1.addElement(xmen.get(i));
+            }
+            jl_heroes.setModel(m1);
+            for (int i = 0; i < darkAvengers.size(); i++) {
+                m2.addElement(darkAvengers.get(i));
+            }
+            for (int i = 0; i < sinister.size(); i++) {
+                m2.addElement(sinister.get(i));
+            }
+            jl_villano.setModel(m2);
+            DefaultMutableTreeNode root=new DefaultMutableTreeNode("Marvel");
+            DefaultTreeModel modelo=new DefaultTreeModel(root);
+            jt_marvel.setModel(modelo);
+            modelo.reload();
+        }
+        else
+        {
+            for (int i = 0; i < m2.size(); i++) {
+                if(m2.get(i)instanceof DarkAvengers)
+                {
+                    grupo="Dark Avengers";
+                    d=(DarkAvengers)m2.get(i);
+                }
+                else
+                {
+                    grupo="Sinister Six";
+                    s=(SinisterSix)m2.get(i);
+                }
+
+                for (int j = 0; j < raiz.getChildCount(); j++) {
+                    if(raiz.getChildAt(j).equals("Villanos"))
+                    {
+                        nodo1=true;
+                        temp1=j;
+                        break;
+                    }
+                }
+                if(nodo1)
+                {
+                    DefaultMutableTreeNode child=(DefaultMutableTreeNode)raiz.getChildAt(temp1);
+                    for (int j = 0; j < child.getChildCount(); j++) {
+                        if(child.getChildAt(j).equals(grupo))
+                        {
+                            nodo2=true;
+                            temp2=j;
+                            break;
+                        }
+                    }
+                    if(nodo2)
+                    {
+                        if(grupo.equals("Dark Avengers"))
+                        {
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(d);
+                            ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(n);
+                        }
+                        else
+                        {
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(s);
+                            ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(n);
+                        }
+                    }
+                    else
+                    {
+                        if(grupo.equals("Dark Avengers"))
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Dark Avengers");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(d);
+                            g.add(n);
+                            raiz.add(g);
+                        }
+                        else
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Sinister Six");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(s);
+                            g.add(n);
+                            raiz.add(g);
+                        }
+                    }
+                }
+                else
+                {
+                    DefaultMutableTreeNode t=new DefaultMutableTreeNode("Villanos");
+                    if(grupo.equals("Dark Avengers"))
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Dark Avengers");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(d);
+                            g.add(n);
+                            t.add(g);
+                            raiz.add(t);
+                        }
+                        else
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Sinister Six");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(s);
+                            g.add(n);
+                            t.add(g);
+                            raiz.add(t);
+                        }
+                }
+            }
+            for (int i = 0; i < m1.size(); i++) {
+                if(m1.get(i)instanceof Avengers)
+                {
+                    grupo="Avengers";
+                    a=(Avengers)m1.get(i);
+                }
+                else
+                {
+                    grupo="Xmen";
+                    x=(Xmen)m1.get(i);
+                }
+
+                for (int j = 0; j < raiz.getChildCount();j++) {
+                    if(raiz.getChildAt(j).equals("Heroe"))
+                    {
+                        nodo1=true;
+                        temp1=j;
+                        break;
+                    }
+                }
+                if(nodo1)
+                {
+                    DefaultMutableTreeNode child=(DefaultMutableTreeNode)raiz.getChildAt(temp1);
+                    for (int j = 0; j < child.getChildCount(); j++) {
+                        if(child.getChildAt(i).equals(grupo))
+                        {
+                            nodo2=true;
+                            temp2=j;
+                            break;
+                        }
+                    }
+                    if(nodo2)
+                    {
+                        if(grupo.equals("Avengers"))
+                        {
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(a);
+                            ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(n);
+                        }
+                        else
+                        {
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(x);
+                            ((DefaultMutableTreeNode)child.getChildAt(temp2)).add(n);
+                        }
+                    }
+                    else
+                    {
+                        if(grupo.equals("Avengers"))
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Avengers");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(a);
+                            g.add(n);
+                            raiz.add(g);
+                        }
+                        else
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Xmen");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(x);
+                            g.add(n);
+                            raiz.add(g);
+                        }
+                    }
+                }
+                else
+                {
+                    DefaultMutableTreeNode t=new DefaultMutableTreeNode("Heroes");
+                    if(grupo.equals("Avengers"))
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Avengers");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(a);
+                            g.add(n);
+                            t.add(g);
+                            raiz.add(t);
+                        }
+                        else
+                        {
+                            DefaultMutableTreeNode g =new DefaultMutableTreeNode("Xmen");
+                            DefaultMutableTreeNode n = new DefaultMutableTreeNode(x);
+                            g.add(n);
+                            t.add(g);
+                            raiz.add(t);
+                        }
+                    
+                }
+            }
+            m1.removeAllElements();
+            m2.removeAllElements();
+            jl_heroes.setModel(m1);
+            jl_villano.setModel(m2);
+           mod.reload();
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -962,9 +1558,15 @@ public class Marvel extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_personajes;
     private javax.swing.JList<String> jl_superpoderes;
     private javax.swing.JList<String> jl_villano;
+    private javax.swing.JMenuItem jmi_agregar;
+    private javax.swing.JMenuItem jmi_agregarV;
+    private javax.swing.JMenuItem jmi_eliminar;
+    private javax.swing.JMenuItem jmi_eliminarV;
     private javax.swing.JTree jt_marvel;
     private javax.swing.ButtonGroup mortal;
     private javax.swing.JPasswordField pf_contra;
+    private javax.swing.JPopupMenu popup_heroes;
+    private javax.swing.JPopupMenu popup_villanos;
     private javax.swing.JRadioButton rb_No;
     private javax.swing.JRadioButton rb_Si;
     private javax.swing.JSpinner sp_altura;

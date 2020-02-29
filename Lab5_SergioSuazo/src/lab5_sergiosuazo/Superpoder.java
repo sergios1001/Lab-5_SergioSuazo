@@ -49,7 +49,7 @@ public class Superpoder {
 
     @Override
     public String toString() {
-        return "Superpoder{" + "poder=" + poder + ", descripcion=" + descripcion + ", mortal=" + mortal + '}';
+        return descripcion;
     }
     
 }

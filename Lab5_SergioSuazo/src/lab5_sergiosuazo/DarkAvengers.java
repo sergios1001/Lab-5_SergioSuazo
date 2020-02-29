@@ -20,7 +20,7 @@ public class DarkAvengers extends Villano{
 
     @Override
     public String toString() {
-        return "DarkAvengers{" + '}';
+        return super.getNombre();
     }
     
 }

@@ -20,7 +20,7 @@ public class Avengers extends Heroe{
 
     @Override
     public String toString() {
-        return "Avengers{" + '}';
+        return super.getNombre();
     }
     
 }
